@@ -478,11 +478,14 @@ def create_ui(app_config: ApplicationConfig):
         # Try to convert from camel-case to title-case
         implementation_name = app_config.whisper_implementation.title().replace("_", " ").replace("-", " ")
 
-    ui_description = implementation_name + " is a general-purpose speech recognition model. It is trained on a large dataset of diverse " 
-    ui_description += " audio and is also a multi-task model that can perform multilingual speech recognition "
-    ui_description += " as well as speech translation and language identification. "
+    # ui_description = implementation_name + " is a general-purpose speech recognition model. It is trained on a large dataset of diverse " 
+    # ui_description += " audio and is also a multi-task model that can perform multilingual speech recognition "
+    # ui_description += " as well as speech translation and language identification. "
 
-    ui_description += "\n\n\n\nFor longer audio files (>10 minutes) not in English, it is recommended that you select Silero VAD (Voice Activity Detector) in the VAD option."
+    # ui_description += "\n\n\n\nFor longer audio files (>10 minutes) not in English, it is recommended that you select Silero VAD (Voice Activity Detector) in the VAD option."
+
+    ui_description = "GBS 자막 생성기"
+    ui_description += "\n\n\n\n 문의: SKT Media Platform팀 (email: jk.yun@sk.com  tel: 010-9356-4575)"
 
     # Recommend faster-whisper
     if is_whisper:
@@ -528,7 +531,8 @@ def create_ui(app_config: ApplicationConfig):
         gr.Text(label="Segments")
     ])
 
-    full_description = ui_description + "\n\n\n\n" + "Be careful when changing some of the options in the full interface - this can cause the model to crash."
+    # full_description = ui_description + "\n\n\n\n" + "Be careful when changing some of the options in the full interface - this can cause the model to crash."
+    full_description = ui_description + "\n\n\n\n" + " 참고. 인식률을 높이기 위한 설정 (처리시간 증가) - Best Of 10, Beam Size 10, Patience 3"
 
     full_transcribe = gr.Interface(fn=ui.transcribe_webui_full_progress if is_queue_mode else ui.transcribe_webui_full,
                                    description=full_description, article=ui_article, inputs=[
