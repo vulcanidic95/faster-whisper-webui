@@ -404,6 +404,14 @@ class AbstractTranscription(ABC):
             # Add to start and end
             new_segment['start'] = segment_start + adjust_seconds
             new_segment['end'] = segment_end + adjust_seconds
+
+            # Handle words
+            if ('words' in new_segment):
+                for word in new_segment['words']:
+                    # Adjust start and end
+                    word['start'] = word['start'] + adjust_seconds
+                    word['end'] = word['end'] + adjust_seconds
+
             result.append(new_segment)
         return result
 
@@ -438,9 +446,7 @@ class VadSileroTranscription(AbstractTranscription):
             print("Created Silerio model")
 
     def _create_model(self):
-        
-        # model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad')
-        model, utils = torch.hub.load(repo_or_dir='models/silero-vad', model='silero_vad',source="local")
+        model, utils = torch.hub.load(repo_or_dir='snakers4/silero-vad', model='silero_vad')
         
         # Silero does not benefit from multi-threading
         torch.set_num_threads(1) # JIT

@@ -1,9 +1,13 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch
+--extra-index-url https://download.pytorch.org/whl/cu118
+torchaudio
 git+https://github.com/huggingface/transformers
 git+https://github.com/openai/whisper.git
 transformers
 ffmpeg-python==0.2.0
-gradio==3.23.0
+gradio_client
+gradio
 yt-dlp
-torchaudio
 altair
 json5

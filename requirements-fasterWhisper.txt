@@ -1,9 +1,12 @@
+--extra-index-url https://download.pytorch.org/whl/cu118
+torch
+--extra-index-url https://download.pytorch.org/whl/cu118
+torchaudio
 ctranslate2
 faster-whisper
 ffmpeg-python==0.2.0
-gradio==3.23.0 
+gradio_client
+gradio
 yt-dlp
 json5
-torch
-torchaudio
 more_itertools

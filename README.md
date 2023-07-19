@@ -1,19 +1,16 @@
 ---
-title: Faster Whisper Webui
-emoji: 🚀
-colorFrom: indigo
-colorTo: blue
+title: Whisper Webui
+emoji: ⚡
+colorFrom: pink
+colorTo: purple
 sdk: gradio
 sdk_version: 3.23.0
 app_file: app.py
 pinned: false
 license: apache-2.0
 ---
-[**English**](README.md) | [**中文文档**](README_zh_CN.md)
 
 Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
-
-This is a copy for [aadnk/whisper-webui](https://gitlab.com/aadnk/whisper-webui),I made modifications based on this for personal use.
 
 # Running Locally
 
@@ -21,28 +18,6 @@ To run this program locally, first install Python 3.9+ and Git. Then install Pyt
 ```
 pip install -r requirements.txt
 ```
-The project model is loaded locally and requires creating a `models` directory in the project path, and placing the model files in the following format.
-```
-├─faster-whisper
-│  ├─base
-│  ├─large
-│  ├─large-v2
-│  ├─medium
-│  ├─small
-│  └─tiny
-└─silero-vad
-    ├─examples
-    │  ├─cpp
-    │  ├─microphone_and_webRTC_integration
-    │  └─pyaudio-streaming
-    ├─files
-    └─__pycache__
-```
-### model download path
-
-[faster-whisper](https://huggingface.co/guillaumekln)
-
-[silero-vad](https://github.com/snakers4/silero-vad)
 
 You can find detailed instructions for how to install this on Windows 10/11 [here (PDF)](docs/windows/install_win10_win11.pdf).
 
@@ -76,6 +51,13 @@ If you want to use a different configuration file, you can use the `WHISPER_WEBU
 You can upload multiple files either through the "Upload files" option, or as a playlist on YouTube. 
 Each audio file will then be processed in turn, and the resulting SRT/VTT/Transcript will be made available in the "Download" section. 
 When more than one file is processed, the UI will also generate a "All_Output" zip file containing all the text output files.
+
+## Diarization
+
+To detect different speakers in the audio, you can use the [whisper-diarization](https://gitlab.com/aadnk/whisper-diarization) application. 
+
+Download the JSON file after running Whisper on an audio file, and then run app.py in the 
+whisper-diarization repository with the audio file and the JSON file as arguments.
 
 ## Whisper Implementation
 
@@ -201,5 +183,3 @@ sudo docker run -d --gpus=all -p 7860:7860 \
 --mount type=bind,source=/home/administrator/.cache/whisper,target=/root/.cache/whisper \
 registry.gitlab.com/aadnk/whisper-webui:latest
 ```
-## One Key Start
-For novice users, an installer-free program can be downloaded from the Releases page. Click `webui-start.bat `to start the program, and then enter the corresponding address in the browser to access it(Only the small model is included, other models need to be downloaded separately).
